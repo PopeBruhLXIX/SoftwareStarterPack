@@ -1,0 +1,8 @@
+title: YYYY-MM-DD
+script_language_version: '1.1'
+script: |
+  $if($and(%date%,$eq($len(%date%),8)),$set(date,$truncate(%date%,4)-$substr(%date%,4,-2)-$substr(%date%,-2)))
+  $if($and(%year%,$eq($len(%year%),8)),$set(date,$truncate(%year%,4)-$substr(%year%,4,-2)-$substr(%year%,-2)))
+  $if($and(%originaldate%,$eq($len(%originaldate%),8)),$set(originaldate,$truncate(%originaldate%,4)-$substr(%originaldate%,4,-2)-$substr(%originaldate%,-2)))
+  $if($and(%releasedate%,$eq($len(%releasedate%),8)),$set(date,$truncate(%releasedate%,4)-$substr(%releasedate%,4,-2)-$substr(%releasedate%,-2)))
+id: 72908a4c-21e5-4753-a537-29b06141738b

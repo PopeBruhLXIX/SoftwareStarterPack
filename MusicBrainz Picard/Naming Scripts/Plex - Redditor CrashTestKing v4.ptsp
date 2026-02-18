@@ -1,0 +1,19 @@
+title: Plex - Redditor CrashTestKing v3
+description: |
+  This preset example file naming script does not require any special settings, tagging scripts or plugins.
+author: MusicBrainz Picard Development Team
+license: GNU Public License version 2
+version: '1.0'
+last_updated: 2019-08-05 13:40:00 UTC
+script_language_version: '1.0'
+script: |
+  $if($and(%date%,$eq($len(%date%),8)),$set(date,$truncate(%date%,4)))
+  $if2(%albumartistsort%,%artistsort%,%albumartist%,%artist%)/
+  $if($or(%year%,%originalyear%,%releasedate%,%date%,%originaldate%),[$if2(%year%,%originalyear%,$if(%releasedate%,$year(%releasedate%)),$if(%date%,$year(%date%)),$if(%originaldate%,$year(%originaldate%)))],[xxx]) $if2(%album%,%albumsort%,%title%)
+   $if2($if(%releasetype%,[%releasetype%]),$if($and(%tracknumber%,%album%),[album]),$if($not(%tracknumber%),[single]),[xxx])/
+  $if($gt(%totaldiscs%,1),%discnumber%-,)
+  $if($and(
+  $or($and(%tracknumber%,%album%,$not($eq(%releasetype%,dj-mix))),$and(%tracknumber%,$eq(%releasetype%,ep)),$and(%tracknumber%,$eq(%releasetype%,compilation))),$not($eq(%releasetype%,single))
+  ),$num(%tracknumber%,2) ,)
+  $if2(%titlesort%,%title%)
+id: eb0d184e-e005-4d90-8eb3-b24204334ee4
